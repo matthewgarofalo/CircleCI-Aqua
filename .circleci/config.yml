@@ -17,8 +17,8 @@ jobs:
     docker:
       - image: docker:18.06.0-ce-git
     steps:
-     # - setup_remote_docker:
-     #     version: 18.06.0-ce
+     - setup_remote_docker:
+          version: 18.06.0-ce
     # Install via apk on alpine based images
       - run:
           name: Install Docker client
