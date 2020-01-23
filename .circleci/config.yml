@@ -45,6 +45,6 @@ jobs:
             mkdir /tmp/artifacts &&
             sudo mkdir /opt/aquascans &&
             sudo chmod 777 /opt/aquascans &&
-            ./scannercli scan --host $AQUA_SERVER --registry aquademo orders-nginx:2.0 --dockerless --user $LOGIN_USERNAME --password $LOGIN_PASSWORD --htmlfile /tmp/artifacts/orders-nginx2.html
+            ./scannercli scan --host $AQUA_SERVER --registry aquademo orders-nginx:2.0 --dockerless --user $AQUA_USERNAME --password $AQUA_PASSWORD --htmlfile /tmp/artifacts/orders-nginx2.html
       - store_artifacts:
           path: /tmp/artifacts
