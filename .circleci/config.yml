@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Pull and Scan"
           command:
-            wget https://community-aqua-reports.s3.amazonaws.com/scannercli &&
+            wget https://download.aquasec.com/scanner/4.6.0/scannercli &&
             chmod +x scannercli &&
             mkdir /tmp/artifacts &&
             sudo mkdir /opt/aquascans &&
