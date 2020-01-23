@@ -5,18 +5,18 @@ workflows:
       - build
 jobs:
   build:
-    environment:
-      REPO: "https://github.com/BryanKMorrow/aqua-reports.git"
-      IMAGE: "aqua-reports"
-      TAG: "latest"
+   # environment:
+   #   REPO: "https://github.com/BryanKMorrow/aqua-reports.git"
+   #   IMAGE: "aqua-reports"
+   #   TAG: "latest"
     machine:
       image: ubuntu-1604:201903-01
     steps:
       - run:
           name: "Checkout and Build Code"
           command:
-            git clone ${REPO};
-            cd aqua-reports;
+        #    git clone ${REPO};
+        #    cd aqua-reports;
             docker build -f Dockerfile -t ${IMAGE}:${TAG} .
       - run:
           name: "Pull and Scan"
@@ -26,6 +26,7 @@ jobs:
             mkdir /tmp/artifacts &&
             sudo mkdir /opt/aquascans &&
             sudo chmod 777 /opt/aquascans &&
-            ./scannercli scan --host $AQUA_SERVER --local ${IMAGE}:${TAG} --dockerless --user $AQUA_USER --password $AQUA_PWD --htmlfile /tmp/artifacts/${IMAGE}-${TAG}.html
-      - store_artifacts:
-          path: /tmp/artifacts
+            ./scannercli scan --host $AQUA_SERVER --local ${IMAGE}:${TAG} --dockerless --user $AQUA_USER --password $AQUA_PWD 
+            #--htmlfile /tmp/artifacts/${IMAGE}-${TAG}.html
+    #  - store_artifacts:
+          # path: /tmp/artifacts
