@@ -23,7 +23,7 @@ jobs:
     #  - run:
     #      name: Install Docker client
     #      command: apk add docker-cli
-      -run:
+      - run:
          command: docker login registry.aquasec.com -U $AQUA_USERNAME -P $AQUA_PASSWORD
          command: docker pull registry.aquasec.com/scanner:4.6
       - run: 
