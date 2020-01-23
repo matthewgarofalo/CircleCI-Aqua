@@ -24,3 +24,5 @@ jobs:
           #--htmlfile /tmp/artifacts/${IMAGE}-${TAG}.html
     #- store_artifacts:
       #  path: /tmp/artifacts
+      
+      
