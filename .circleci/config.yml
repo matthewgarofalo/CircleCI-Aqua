@@ -27,27 +27,24 @@
   #        docker login registry.aquasec.com -u $AQUA_USERNAME -p $AQUA_PASSWORD
   #        docker pull registry.aquasec.com/scanner:4.6
   #        docker run -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:4.6 scan -H http://aquasec-demo1082-vm0.eastus.cloudapp.azure.com/#/dashboard:8080 -U $LOGIN_USERNAME -P $LOGIN_PASSWORD --local alpine:3.7
-
-
-
 version: 2.1
-
-orbs:
-  microscanner: 'aquasecurity/microscanner@dev:0.1.6'
-
-jobs:
-  docker-build:
-    executor: microscanner/default
-    steps:
-      - checkout
-      - run: docker build -t alpine:3.7 .
-
 workflows:
-  scan-image:
+  main:
     jobs:
-      - docker-build
-      - microscanner/scan-image:
-          requires:
-            - docker-build
-          context: microscanner
-          image: alpine:3.7
+      - build
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - run:
+          name: "Pull and Scan"
+          command: 
+            wget https://community-aqua-reports.s3.amazonaws.com/scannercli && 
+            chmod +x scannercli &&
+            mkdir /tmp/artifacts &&
+            sudo mkdir /opt/aquascans &&
+            sudo chmod 777 /opt/aquascans &&
+            ./scannercli scan --host $AQUA_SERVER --registry aquademo orders-nginx:2.0 --dockerless --user $AQUA_USERNAME --password $AQUA_PASSWORD --htmlfile /tmp/artifacts/orders-nginx2.html
+      - store_artifacts:
+          path: /tmp/artifacts
