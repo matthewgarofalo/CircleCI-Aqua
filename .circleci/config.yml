@@ -17,7 +17,8 @@ jobs:
         name: Pull and Scan
         command: 
           wget https://community-aqua-reports.s3.amazonaws.com/scannercli && 
-          chmod +x scannercli && mkdir /tmp/artifacts
+          chmod +x scannercli 
+          mkdir /tmp/artifacts
           sudo mkdir /opt/aquascans 
           sudo chmod 777 /opt/aquascans 
           ./scannercli scan --host $AQUA_SERVER --local ${IMAGE}:${TAG} --dockerless --user $AQUA_USER --password $AQUA_PWD 
