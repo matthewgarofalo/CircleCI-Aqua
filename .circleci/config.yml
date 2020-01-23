@@ -15,7 +15,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: alpine:3.7
+      - image: docker:18.06.0-ce-git
     steps:
       - setup_remote_docker:
           version: 18.06.0-ce
@@ -23,5 +23,8 @@ jobs:
     #  - run:
     #      name: Install Docker client
     #      command: apk add docker-cli
+      -run:
+         command: docker login registry.aquasec.com -U $AQUA_USERNAME -P $AQUA_PASSWORD
+         command: docker pull registry.aquasec.com/scanner:4.6
       - run: 
-          command: docker run -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:4.6 scan -H http://aquasec-demo1082-vm0.eastus.cloudapp.azure.com/#/dashboard:8080 -U $AQUA_USERNAME -P $AQUA_PASSWORD --local alpine:3.7
+          command: docker run -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:4.6 scan -H http://aquasec-demo1082-vm0.eastus.cloudapp.azure.com/#/dashboard:8080 -U $LOOGIN_USERNAME -P $LOGIN_PASSWORD --local alpine:3.7
