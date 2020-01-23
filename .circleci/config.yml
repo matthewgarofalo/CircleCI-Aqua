@@ -23,4 +23,5 @@ jobs:
           command: apk add docker-cli
       #- run: 
       #    command: docker run -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:4.6 scan -H http://aquasec-demo1082-vm0.eastus.cloudapp.azure.com/#/dashboard:8080 -U $AQUA_USERNAME -P $AQUA_PASSWORD --local alpine:3.7
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 18.06.0-ce
