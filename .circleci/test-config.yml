@@ -5,18 +5,18 @@ workflows:
       - build
 jobs:
   build:
-    environment:
-      REPO: "https://github.com/BryanKMorrow/aqua-reports.git"
-      IMAGE: "aqua-reports"
-      TAG: "latest"
+   # environment:
+   #   REPO: "https://github.com/BryanKMorrow/aqua-reports.git"
+   #   IMAGE: "aqua-reports"
+    #  TAG: "latest"
     machine:
       image: ubuntu-1604:201903-01
     steps:
       - run:
           name: "Checkout and Build Code"
-          command:
-            git clone ${REPO};
-            cd aqua-reports;
+          #command:
+          #  git clone ${REPO};
+          #  cd aqua-reports;
             docker build -f Dockerfile -t ${IMAGE}:${TAG} .
       - run:
           name: "Pull and Scan"
