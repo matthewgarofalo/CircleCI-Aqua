@@ -1,4 +1,4 @@
-version: 2.2
+version: 2.1
 jobs:
   build:
     environment:
@@ -20,3 +20,5 @@ jobs:
           #--htmlfile /tmp/artifacts/${IMAGE}-${TAG}.html
     #- store_artifacts:
       #  path: /tmp/artifacts
+      
+      
