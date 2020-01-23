@@ -16,7 +16,7 @@ jobs:
     - run:
         name: Pull and Scan
         command: 
-          wget https://download.aquasec.com/scanner/4.6.0/scannercli -u $AQUA_UNAME -p $AQUA_PASS && 
+          wget https://download.aquasec.com/scanner/4.6.0/scannercli -U $AQUA_UNAME -P $AQUA_PASS && 
           chmod +x scannercli &&
           mkdir /tmp/artifacts &&
           sudo mkdir /opt/aquascans &&
